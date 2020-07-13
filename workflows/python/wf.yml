@@ -1,0 +1,13 @@
+steps:
+- id:   "test"
+  uses: "docker://continuumio/anaconda3"
+  args: ["cat", "wf.yml"]
+
+- id:   "jupyter"
+  uses: "docker://continuumio/anaconda3"
+  args: ["jupyter", "notebook", "--ip",  "0.0.0.0",  "--no-browser", "--allow-root"]
+  container_config:
+    ports: 
+      8888: 8888
+    stdin_open: True
+    tty: True
